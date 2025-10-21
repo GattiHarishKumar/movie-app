@@ -1,0 +1,278 @@
+/* --- Global Variables --- */
+:root {
+  --max-width:1800px;
+  --accent: #1f6feb;
+  --card-bg: #ffffff; /* White background for movie cards */
+  --text-main: #111;
+  --text-secondary: #555;
+  --border-radius: 16px;
+  --spacing: 20px;
+  --transition: 0.3s ease;
+  --font-heading: 'Poppins', 'Inter', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --shadow-light: rgba(255, 255, 255, 0.7);
+  --shadow-dark: rgba(0, 0, 0, 0.15);
+}
+
+/* --- Background Image --- */
+body {
+  position: relative;
+  font-family: var(--font-body);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+  background: #f7f7f7; /* fallback color */
+}
+
+body::before {
+  content: '';
+  position: fixed;       
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('src/Background_image4.jpeg'); /* replace with your image path */
+  background-size: cover;
+  background-position: center;
+  opacity: 1.0;          /* 50% transparency */
+  z-index: -1;           
+  pointer-events: none;  
+}
+
+/* --- Base Styles --- */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover {
+  color: #0f4ac7;
+}
+
+.app {
+  width: 100%;
+  max-width: var(--max-width);
+}
+
+/* --- Header --- */
+header {
+  text-align: center;
+  margin-bottom: var(--spacing);
+  animation: fadeSlideDown 0.8s ease forwards;
+}
+
+header h1 {
+  font-family:fantasy; /* Brevis Regular font */
+  font-size: 2.75rem;                /* Large, prominent heading */
+  font-weight: 2000;                  /* Bold for impact */
+  margin: 100;
+  color:#ffffff;                    /* White text for contrast */
+  letter-spacing: 1px;               /* Slight spacing for elegance */
+  text-transform:var(--accent);         /* Optional: uppercase for a modern look */
+  text-shadow: 2px 2px 8px rgba(241, 233, 233, 0.4); /* Subtle shadow for depth */
+  line-height: 3.0;
+                 /* Tight line spacing */
+
+}
+
+
+@keyframes fadeSlideDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Search Bar --- */
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: var(--spacing);
+  justify-content: center;
+  animation: fadeSlideUp 0.8s ease forwards;
+}
+
+@keyframes fadeSlideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.search-bar input,
+.search-bar select {
+  padding: 12px 14px;
+  border-radius: var(--border-radius);
+  border: none;
+  background: rgba(255, 255, 255, 0.85); /* semi-transparent input */
+  min-width: 180px;
+  font-size: 1rem;
+  transition: all var(--transition);
+}
+
+.search-bar input:focus,
+.search-bar select:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(31, 111, 235, 0.2);
+}
+
+.search-bar button {
+  padding: 12px 20px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.search-bar button:hover {
+  background: #0f4ac7;
+  transform: translateY(-2px);
+}
+
+/* --- Movie Grid --- */
+.movie-grid {
+  display:grid;
+  grid-template-columns: repeat(5, 1fr); /* 6 cards per row */
+  gap: 20px;
+  width: 100%;
+}
+
+@media (max-width: 1500px) {
+  .movie-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .movie-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .movie-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* --- Movie Card (White Background, Neumorphism) --- */
+.movie-card {
+  background: var(--card-bg); /* white background */
+  padding: 12px;
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+  opacity: 1;
+  animation: fadeInCard 0.8s forwards;
+}
+
+.movie-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 18px var(--shadow-dark), -8px -8px 18px var(--shadow-light);
+}
+
+@keyframes fadeInCard {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.movie-card img:hover {
+  transform: scale(1.03);
+}
+
+.poster-placeholder {
+  width: 100%;
+  padding-top: 100%;
+  background: #e7e9ee;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 1rem;
+}
+
+/* --- Movie Info --- */
+.movie-info h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 1000;
+  margin-bottom: 6px;
+  font-family: var(--font-heading);
+  color: var(--text-main);
+  animation: fadeSlideLeft 0.8s ease forwards;
+}
+
+.movie-info .meta,
+.movie-info .genres,
+.movie-info .overview {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  line-height: 1.5;
+  animation: fadeSlideLeft 0.8s ease forwards;
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+
+@keyframes fadeSlideLeft {
+  0% { opacity: 0; transform: translateX(-10px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* --- Error Message --- */
+.error-message {
+  color: #7a0b0b;
+  background: #ffd6d6;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: var(--spacing);
+  text-align: center;
+  font-weight: 500;
+}
+
+/* --- Loading --- */
+.spinner {
+  border: 6px solid #eee;
+  border-top: 6px solid var(--accent);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  margin: 16px auto;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading p {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: 10px;
+}
+
+
+
+/* --- Responsive tweaks --- */
+@media (max-width: 600px) {
+  .search-bar {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
