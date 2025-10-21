@@ -103,7 +103,7 @@ The app can be easily deployed on [Render](https://render.com):
 | **Root Directory**    | *(leave blank)*                |
 
 The deployed site is live at:
-🔗 **[https://your-app-name.onrender.com](https://your-app-name.onrender.com)**
+🔗 **https://moviestreamx.onrender.com/**
 
 ---
 
